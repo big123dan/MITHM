@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оригинальный магазин</title>
+</head>
+<body>
+    <h1>Оригинальный магазин</h1>
+    <p>Купить товар за 1000 руб</p>
+    
+    <!-- ФЕЙКОВАЯ ФОРМА, отправляет данные злоумышленнику -->
+    <form action="/payment" method="POST">
+        <input name="card" placeholder="Номер карты" required><br>
+        <input name="cvv" placeholder="CVV" required><br>
+        <button type="submit">Оплатить</button>
+    </form>
+    
+    <p style="color: green;">✅ Оплата защищена SSL</p>
+</body>
+</html>

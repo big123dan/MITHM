@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Псевдо-платёж</title>
+    <title>Оригинальный магазин</title>
 </head>
 <body>
-<h1>Введите данные карты</h1>
-<form id="cardForm">
-    <input name="card" placeholder="Номер карты" required><br>
-    <input name="cvv" placeholder="CVV" required><br>
-    <button type="submit">Купить</button>
-</form>
+    <h1>Оригинальный магазин</h1>
+    <p>Купить товар за 1000 руб</p>
+    
+    <form id="paymentForm">
+        <input name="card" placeholder="Номер карты" required><br>
+        <input name="cvv" placeholder="CVV" required><br>
+        <button type="submit">Оплатить</button>
+    </form>
 
-<script>
-    document.getElementById("cardForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const data = {
-            card: e.target.card.value,
-            cvv: e.target.cvv.value
-        };
-        await fetch("/steal", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = {
+                card: e.target.card.value,
+                cvv: e.target.cvv.value
+            };
+            const response = await fetch("/payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            alert("Оплата успешна!");
         });
-        alert("Данные отправлены!");
-    });
-</script>
+    </script>
 </body>
 </html>

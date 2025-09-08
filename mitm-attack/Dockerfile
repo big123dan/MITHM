@@ -1,7 +1,7 @@
 FROM node:20-alpine
 WORKDIR /app
 COPY package*.json ./
-RUN npm install express
+RUN npm install express http-proxy
 COPY . .
-EXPOSE 8080
+EXPOSE 8081
 CMD ["node", "server.js"]

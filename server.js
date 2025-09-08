@@ -9,19 +9,13 @@ const app = express();
 const PORT = 8080;
 
 app.use(express.json());
-app.use((req, res, next) => {
-    console.log(`[MITM] ${req.method} ${req.url}`, req.body || "");
-    next();
-});
-
 app.use(express.static(path.join(__dirname, "public")));
 
-app.post("/steal", (req, res) => {
-    console.log("🔥 Перехваченные данные формы:", req.body);
-    res.send({ status: "ok" });
+app.post("/payment", (req, res) => {
+    console.log("💳 Оригинальный сайт получил:", req.body);
+    res.json({ status: "success", message: "Оплата обработана" });
 });
 
-
-app.listen(PORT, () => {
-    console.log(`MITM-сервер запущен → http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🏛️ Оригинальный сайт → http://localhost:8080`);
 });
