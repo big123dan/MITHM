@@ -1,18 +1,30 @@
 version: '3.8'
 services:
-  # Оригинальный сайт (в корне)
+  # Оригинальный сайт
   original:
     build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
+      context: ./original
+    networks:
+      - mitm-network
 
-  # MITM-атака
+  # MITM-атака (подменяет оригинальный сайт)
   mitm-attack:
     build:
       context: ./mitm-attack
     ports:
-      - "8081:8081"
+      - "8080:8081"  # MITM на порту 8080 (как будто это оригинал)
+    networks:
+      - mitm-network
+
+  # Жертва (имитирует пользователя)
+  victim:
+    build:
+      context: ./victim
+    networks:
+      - mitm-network
     depends_on:
-      - original
+      - mitm-attack
+
+networks:
+  mitm-network:
+    driver: bridge
