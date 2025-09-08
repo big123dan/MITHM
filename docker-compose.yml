@@ -1,0 +1,5 @@
+services:
+  mitm-phish:
+    build: .
+    ports:
+      - "8080:8080"
