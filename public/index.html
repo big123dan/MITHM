@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Оригинальный магазин</h1>
-    <p>Купить товар за 1000 руб</p>
+    <p>Купить товар</p>
     
     <form id="paymentForm">
         <input name="card" placeholder="Номер карты" required><br>
@@ -20,7 +20,7 @@
                 card: e.target.card.value,
                 cvv: e.target.cvv.value
             };
-            const response = await fetch("/payment", {
+            const response = await fetch("/payment_original", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)

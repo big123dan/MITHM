@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Оригинальный магазин</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-        h1 { color: #333; }
-        form { background: #f5f5f5; padding: 20px; border-radius: 5px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 3px; }
-        button { background: #007cba; color: white; padding: 12px 20px; border: none; border-radius: 3px; cursor: pointer; }
-        button:hover { background: #005a87; }
-        .secure { color: green; font-weight: bold; }
-    </style>
+    <title>НЕОригинальный магазин</title>
 </head>
 <body>
-    <h1>Оригинальный магазин</h1>
-    <p>Купить товар за 1000 руб</p>
+    <h1>НЕ Оригинальный магазин</h1>
+    <p>Купить товар</p>
     
-    <!-- Фишинговая форма с method="POST" -->
     <form action="/payment" method="POST">
         <input name="card" placeholder="Номер карты" required><br>
         <input name="cvv" placeholder="CVV" required><br>
         <button type="submit">Оплатить</button>
     </form>
-    
-    <p class="secure">✅ Оплата защищена SSL</p>
 </body>
 </html>
