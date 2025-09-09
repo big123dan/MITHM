@@ -1,29 +1,18 @@
 version: '3.8'
 services:
-  # Оригинальный сайт
   original:
     build:
       context: ./original
     networks:
       - mitm-network
 
-  # MITM-атака (подменяет оригинальный сайт)
   mitm-attack:
     build:
       context: ./mitm-attack
     ports:
-      - "8080:8081"  # MITM на порту 8080 (как будто это оригинал)
+      - "8080:8081" 
     networks:
       - mitm-network
-
-  # Жертва (имитирует пользователя)
-  victim:
-    build:
-      context: ./victim
-    networks:
-      - mitm-network
-    depends_on:
-      - mitm-attack
 
 networks:
   mitm-network:

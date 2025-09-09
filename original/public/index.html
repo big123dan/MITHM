@@ -2,16 +2,11 @@
 <html>
 <head>
     <title>Оригинальный магазин</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-        .header { background: #007cba; color: white; padding: 20px; border-radius: 5px; }
-        .secure { color: green; font-weight: bold; }
-    </style>
 </head>
 <body>
     <div class="header">
         <h1>Оригинальный магазин</h1>
-        <p>Купить товар за 1000 руб</p>
+        <p>Купить товар </p>
     </div>
     
     <form id="paymentForm">
@@ -21,8 +16,6 @@
         <button type="submit">Оплатить</button>
     </form>
     
-    <p class="secure">✅ Оплата защищена SSL</p>
-
     <script>
         document.getElementById("paymentForm").addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -35,7 +28,7 @@
                 body: JSON.stringify(data)
             });
             const result = await response.json();
-            alert("Оплата успешна!");
+            alert("Оплата успешна");
         });
     </script>
 </body>
